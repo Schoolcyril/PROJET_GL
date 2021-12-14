@@ -1,0 +1,21 @@
+
+{
+    "fields": [
+        {
+            "name": "date_deb",
+            "type": "string"
+        },
+        {
+            "name": "date_fin",
+            "type": "string"
+        }
+        
+    ],
+    "validations": [
+        {
+            "field": "title",
+            "rules": "required|max:10"
+        }
+    ]
+}
+
