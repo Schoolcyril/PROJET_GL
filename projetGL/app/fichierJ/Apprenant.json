@@ -24,8 +24,8 @@
     ],
     "validations": [
         {
-            "field": "title",
-            "rules": "required|max:10"
+            "field": "nom",
+            "rules": "required|max:50"
         }
     ]
 }

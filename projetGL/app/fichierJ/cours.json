@@ -9,12 +9,12 @@
             "name": "date_fin",
             "type": "string"
         }
-        
+
     ],
     "validations": [
         {
-            "field": "title",
-            "rules": "required|max:10"
+            "field": "date_deb",
+            "rules": "required"
         }
     ]
 }

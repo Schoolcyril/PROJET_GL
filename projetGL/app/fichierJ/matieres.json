@@ -15,7 +15,11 @@
     ],
     "validations": [
         {
-            "field": "title",
+            "field": "nom",
+            "rules": "required|max:10"
+        },
+        {
+            "field": "code_matiere",
             "rules": "required|max:10"
         }
     ]
