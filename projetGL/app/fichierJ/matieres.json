@@ -1,0 +1,23 @@
+{
+    "fields": [
+        {
+            "name": "nom",
+            "type": "string"
+        },
+        {
+            "name": "code_matiere",
+            "type": "string"
+        },
+        {
+            "name": "nbre_heures",
+            "type": "integer"
+        }
+    ],
+    "validations": [
+        {
+            "field": "title",
+            "rules": "required|max:10"
+        }
+    ]
+}
+
