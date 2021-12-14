@@ -1,0 +1,32 @@
+
+{
+    "fields": [
+        {
+            "name": "nom",
+            "type": "string"
+        },
+        {
+            "name": "numero_tel",
+            "type": "string"
+        },
+        {
+            "name": "email",
+            "type": "string"
+        },
+        {
+            "name": "adresse",
+            "type": "string"
+        },
+        {
+            "name": "matricule",
+            "type": "string"
+        }
+    ],
+    "validations": [
+        {
+            "field": "title",
+            "rules": "required|max:10"
+        }
+    ]
+}
+
