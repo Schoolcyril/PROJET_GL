@@ -24,8 +24,12 @@
     ],
     "validations": [
         {
-            "field": "title",
+            "field": "nom",
             "rules": "required|max:10"
+        },
+        {
+            "field": "email",
+            "rules": "required|unique"
         }
     ]
 }
