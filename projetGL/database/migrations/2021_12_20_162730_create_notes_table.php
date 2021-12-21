@@ -2,8 +2,9 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class CreateCoursTable extends Migration
+class CreateNotesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +13,11 @@ class CreateCoursTable extends Migration
      */
     public function up()
     {
-        Schema::create('cours', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('notes', function (Blueprint $table) {
+            $table->id();
+            $table->double("valeur")->unsigned();
             $table->timestamps();
-            $table->string('date_deb')->nullable();
-            $table->string('date_fin')->nullable();
-            });
+        });
     }
 
     /**
@@ -27,6 +27,6 @@ class CreateCoursTable extends Migration
      */
     public function down()
     {
-        Schema::drop('cours');
+        Schema::dropIfExists('notes');
     }
 }

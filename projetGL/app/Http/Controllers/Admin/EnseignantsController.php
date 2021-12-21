@@ -55,10 +55,10 @@ class EnseignantsController extends Controller
     {
         $this->validate($request, [
 			'nom' => 'required|max:10',
-			'email' => 'required|unique'
+			'email' => 'required'
 		]);
         $requestData = $request->all();
-        
+
         Enseignant::create($requestData);
 
         return redirect('admin/enseignants')->with('flash_message', 'Enseignant added!');
@@ -103,11 +103,11 @@ class EnseignantsController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-			'nom' => 'required|max:10',
-			'email' => 'required|unique'
+			'nom' => 'required',
+			'email' => 'required'
 		]);
         $requestData = $request->all();
-        
+
         $enseignant = Enseignant::findOrFail($id);
         $enseignant->update($requestData);
 

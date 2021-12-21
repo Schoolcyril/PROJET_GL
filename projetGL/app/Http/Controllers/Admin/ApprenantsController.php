@@ -54,10 +54,10 @@ class ApprenantsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-			'nom' => 'required|max:50'
+			'nom' => 'required'
 		]);
         $requestData = $request->all();
-        
+
         Apprenant::create($requestData);
 
         return redirect('admin/apprenants')->with('flash_message', 'Apprenant added!');
@@ -102,10 +102,10 @@ class ApprenantsController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-			'nom' => 'required|max:50'
+			'nom' => 'required'
 		]);
         $requestData = $request->all();
-        
+
         $apprenant = Apprenant::findOrFail($id);
         $apprenant->update($requestData);
 
