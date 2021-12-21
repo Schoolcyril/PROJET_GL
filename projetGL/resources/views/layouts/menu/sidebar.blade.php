@@ -94,22 +94,23 @@
           </li>
 
           <li class="nav-item has-treeview">
+            <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
-                Matières
+                categories
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{url('admin/matieres')}}" class="nav-link">
+                <a href="{{url('admin/category')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Liste</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{url('admin/matieres/create')}}" class="nav-link">
+                <a href="{{url('admin/category/create')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Ajouter</p>
                 </a>

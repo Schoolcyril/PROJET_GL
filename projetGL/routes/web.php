@@ -32,7 +32,8 @@ Route::prefix('/admin')->group(function () {
         Route::get('create', 'App\Http\Controllers\Admin\ApprenantsController@create');
         Route::post('store', 'App\Http\Controllers\Admin\ApprenantsController@store');
         Route::get('/', 'App\Http\Controllers\Admin\ApprenantsController@index');
-        Route::get('/{id}', 'App\Http\Controllers\Admin\ApprenantsController@show');
+        Route::get('/{
+            id}', 'App\Http\Controllers\Admin\ApprenantsController@show');
         Route::get('/{id}/edit', 'App\Http\Controllers\Admin\ApprenantsController@edit');
         Route::post('/update/{id}', 'App\Http\Controllers\Admin\ApprenantsController@update');
         Route::delete('/{id}', 'App\Http\Controllers\Admin\ApprenantsController@destroy');
@@ -54,5 +55,12 @@ Route::prefix('/admin')->group(function () {
         Route::get('/create', 'App\Http\Controllers\Admin\MatieresController@create');
         Route::delete('/{id}', 'App\Http\Controllers\Admin\MatieresController@destroy');
     });
+
+    Route::prefix('/category')->group(function () {
+     Route::get('/create','App\Http\Controllers\CategoryController@create');
+     Route::post('/ajout','App\Http\Controllers\CategoryController@store');
+     Route::get('/','App\Http\Controllers\CategoryController@index');
+
+});
 });
 
