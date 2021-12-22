@@ -18,8 +18,6 @@ class CreateMatieresTable extends Migration
             $table->string('nom')->nullable();
             $table->string('code_matiere')->nullable();
             $table->integer('nbre_heures')->nullable();
-            $table->integer('chapitre_id')->unsigned();
-            $table->foreign('chapitre_id')->references('id')->on('chapitres')->onDelete('cascade');
             });
     }
 
