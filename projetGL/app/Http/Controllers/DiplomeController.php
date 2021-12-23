@@ -15,7 +15,9 @@ class DiplomeController extends Controller
      */
     public function index()
     {
-        $data=Diplome::latest()->get();
+        $data=Diplome::select('diplomes.id','diplomes.année_obtention','diplomes.mention','apprenants.nom as nom')
+        ->join('apprenants','diplomes.apprenant_id','=','apprenants.id')
+        ->get();
         return view('admin.diplome.index',compact('data'));
     }
 
