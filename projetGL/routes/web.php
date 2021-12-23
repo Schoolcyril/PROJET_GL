@@ -65,4 +65,13 @@ Route::prefix('/admin')->group(function () {
         Route::get('/delete/{id}', 'App\Http\Controllers\CategoryController@destroy');
     });
 
+    Route::prefix('/formation')->group(function (){
+        Route::get('/create', 'App\Http\Controllers\FormationController@create');
+        Route::post('/ajout', 'App\Http\Controllers\FormationController@store');
+        Route::get('/', 'App\Http\Controllers\FormationController@index');
+        Route::get('/details/{id}', 'App\Http\Controllers\FormationController@show');
+        Route::get('/edit/{id}', 'App\Http\Controllers\FormationController@edit');
+        Route::post('/update/{id}', 'App\Http\Controllers\FormationController@update');
+        Route::get('/delete/{id}', 'App\Http\Controllers\FormationController@destroy');
+    });
 });
