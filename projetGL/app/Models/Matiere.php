@@ -25,7 +25,7 @@ class Matiere extends Model
      *
      * @var array
      */
-    protected $fillable = ['nom', 'code_matiere', 'nbre_heures'];
+    protected $fillable = ['nom', 'code_matiere', 'nbre_heures','chapitre_id'];
 
-    
+
 }

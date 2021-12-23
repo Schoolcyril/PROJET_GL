@@ -38,31 +38,34 @@ Route::prefix('/admin')->group(function () {
         Route::delete('/{id}', 'App\Http\Controllers\Admin\ApprenantsController@destroy');
     });
     Route::prefix('/cours')->group(function () {
+        Route::get('/create', 'App\Http\Controllers\Admin\CoursController@create');
         Route::get('/', 'App\Http\Controllers\Admin\CoursController@index');
+        Route::post('store', 'App\Http\Controllers\Admin\CoursController@store');
         Route::get('/{id}', 'App\Http\Controllers\Admin\CoursController@show');
         Route::get('/edit/{id}', 'App\Http\Controllers\Admin\CoursController@edit');
         Route::post('/update/{id}', 'App\Http\Controllers\Admin\CoursController@update');
-        Route::get('/create', 'App\Http\Controllers\Admin\CoursController@create');
         Route::delete('/{id}', 'App\Http\Controllers\Admin\CoursController@destroy');
     });
 
     Route::prefix('/matieres')->group(function () {
+        Route::get('create', 'App\Http\Controllers\Admin\MatieresController@create');
+        Route::post('store', 'App\Http\Controllers\Admin\MatieresController@store');
         Route::get('/', 'App\Http\Controllers\Admin\MatieresController@index');
         Route::get('/{id}', 'App\Http\Controllers\Admin\MatieresController@show');
-        Route::get('/edit/{id}', 'App\Http\Controllers\Admin\MatieresController@edit');
+        Route::get('/{id}/edit', 'App\Http\Controllers\Admin\MatieresController@edit');
         Route::post('/update/{id}', 'App\Http\Controllers\Admin\MatieresController@update');
-        Route::get('/create', 'App\Http\Controllers\Admin\MatieresController@create');
         Route::delete('/{id}', 'App\Http\Controllers\Admin\MatieresController@destroy');
     });
 
-    Route::prefix('/category')->group(function (){
-        Route::get('/create', 'App\Http\Controllers\CategoryController@create');
-        Route::post('/ajout', 'App\Http\Controllers\CategoryController@store');
-        Route::get('/', 'App\Http\Controllers\CategoryController@index');
-        Route::get('/details/{id}', 'App\Http\Controllers\CategoryController@show');
-        Route::get('/edit/{id}', 'App\Http\Controllers\CategoryController@edit');
-        Route::post('/update/{id}', 'App\Http\Controllers\CategoryController@update');
-        Route::get('/delete/{id}', 'App\Http\Controllers\CategoryController@destroy');
+Route::prefix('/category')->group(function(){
+    Route::get('/create','App\Http\Controllers\CategoryController@create') ;
+    Route::post('/ajout','App\Http\Controllers\CategoryController@store') ;
+    Route::get('/','App\Http\Controllers\CategoryController@index') ;
+    Route::get('/detail/{id}','App\Http\Controllers\CategoryController@show') ;
+    Route::get('/edit/{id}','App\Http\Controllers\CategoryController@edit') ;
+    Route::post('/update/{id}','App\Http\Controllers\CategoryController@update') ;
+    Route::get('/delete/{id}','App\Http\Controllers\CategoryController@destroy') ;
+
     });
 
     Route::prefix('/notes')->group(function (){
@@ -70,3 +73,10 @@ Route::prefix('/admin')->group(function () {
         Route::get('/create', 'App\Http\Controllers\NoteController@create');
     });
 });
+
+
+
+
+
+
+

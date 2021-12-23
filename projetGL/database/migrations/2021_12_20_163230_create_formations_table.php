@@ -14,8 +14,10 @@ class CreateFormationsTable extends Migration
     public function up()
     {
         Schema::create('formations', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->string("nom_for");
+            $table->date("date_debut");
+            $table->date("date_fin");
             $table->integer('categorie_id')->unsigned();
             $table->timestamps();
             $table->foreign('categorie_id')->references('id')->on('categories')->onDelete('cascade');

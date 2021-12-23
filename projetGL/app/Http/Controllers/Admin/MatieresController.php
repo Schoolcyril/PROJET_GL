@@ -52,11 +52,11 @@ class MatieresController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-			'nom' => 'required|max:10',
-			'code_matiere' => 'required|max:10'
+			'nom' => 'required'
+
 		]);
         $requestData = $request->all();
-        
+
         Matiere::create($requestData);
 
         return redirect('admin/matieres')->with('flash_message', 'Matiere added!');
@@ -101,11 +101,10 @@ class MatieresController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-			'nom' => 'required|max:10',
-			'code_matiere' => 'required|max:10'
-		]);
+			'nom' => 'required'
+					]);
         $requestData = $request->all();
-        
+
         $matiere = Matiere::findOrFail($id);
         $matiere->update($requestData);
 
