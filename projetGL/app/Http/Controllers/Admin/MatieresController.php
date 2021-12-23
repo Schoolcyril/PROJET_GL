@@ -56,7 +56,7 @@ class MatieresController extends Controller
 			'code_matiere' => 'required|max:10'
 		]);
         $requestData = $request->all();
-        
+
         Matiere::create($requestData);
 
         return redirect('admin/matieres')->with('flash_message', 'Matiere added!');
@@ -105,7 +105,7 @@ class MatieresController extends Controller
 			'code_matiere' => 'required|max:10'
 		]);
         $requestData = $request->all();
-        
+
         $matiere = Matiere::findOrFail($id);
         $matiere->update($requestData);
 
