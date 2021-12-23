@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Apprenant;
 use App\Models\Diplome;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,8 @@ class DiplomeController extends Controller
      */
     public function index()
     {
-        //
+        $data=Diplome::latest()->get();
+        return view('admin.diplome.index',compact('data'));
     }
 
     /**
@@ -24,7 +26,8 @@ class DiplomeController extends Controller
      */
     public function create()
     {
-        //
+        $apprenant = Apprenant::all();
+        return view('admin.diplome.create',compact('apprenant'));
     }
 
     /**
@@ -35,7 +38,9 @@ class DiplomeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data=$request->all();
+        Diplome::create($data);
+        return redirect('admin/diplome');
     }
 
     /**
@@ -44,9 +49,10 @@ class DiplomeController extends Controller
      * @param  \App\Models\Diplome  $diplome
      * @return \Illuminate\Http\Response
      */
-    public function show(Diplome $diplome)
+    public function show($id)
     {
-        //
+        $diplome= Diplome::findOrfail($id);
+        return view('admin.diplome.show',compact('diplome'));
     }
 
     /**
@@ -55,9 +61,11 @@ class DiplomeController extends Controller
      * @param  \App\Models\Diplome  $diplome
      * @return \Illuminate\Http\Response
      */
-    public function edit(Diplome $diplome)
+    public function edit($id)
     {
-        //
+        $apprenant = Apprenant::all();
+        $diplome = Diplome::findOrFail($id);
+        return view('admin.diplome.create',compact('apprenant','diplome'));
     }
 
     /**
@@ -67,9 +75,12 @@ class DiplomeController extends Controller
      * @param  \App\Models\Diplome  $diplome
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Diplome $diplome)
+    public function update(Request $request, $id)
     {
-        //
+        $diplome = Diplome::findOrFail($id);
+        $data=$request->all();
+        $diplome->update($data);
+        return redirect('admin/diplome');
     }
 
     /**
@@ -78,8 +89,11 @@ class DiplomeController extends Controller
      * @param  \App\Models\Diplome  $diplome
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Diplome $diplome)
+    public function destroy($id)
     {
-        //
+        $diplome= Diplome::findOrfail($id);
+        $diplome->destroy($id);
+        return redirect('admin/diplome');
+
     }
 }
