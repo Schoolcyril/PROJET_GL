@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
+use App\Models\Apprenant;
+use App\Models\Diplome;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class DiplomeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +15,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $data=Category::latest()->get();
-        return view('admin.Category.index',compact('data'));
+        $data=Diplome::latest()->get();
+        return view('admin.diplome.index',compact('data'));
     }
 
     /**
@@ -25,8 +26,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.Category.create');
-
+        $apprenant = Apprenant::all();
+        return view('admin.diplome.create',compact('apprenant'));
     }
 
     /**
@@ -38,66 +39,61 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $data=$request->all();
-        Category::create($data);
-
-     return redirect('admin/category');
+        Diplome::create($data);
+        return redirect('admin/diplome');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Category  $category
+     * @param  \App\Models\Diplome  $diplome
      * @return \Illuminate\Http\Response
      */
-
     public function show($id)
     {
-       $category=Category::findOrFail($id);
-       return view('admin/category/show',compact('category'));
-
+        $diplome= Diplome::findOrfail($id);
+        return view('admin.diplome.show',compact('diplome'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Category  $category
+     * @param  \App\Models\Diplome  $diplome
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-          $category=Category::findOrFail($id);
-          return view('admin/category/create',compact('category'));
+        $apprenant = Apprenant::all();
+        $diplome = Diplome::findOrFail($id);
+        return view('admin.diplome.create',compact('apprenant','diplome'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Category  $category
+     * @param  \App\Models\Diplome  $diplome
      * @return \Illuminate\Http\Response
      */
-
     public function update(Request $request, $id)
     {
-        $category= Category::findOrFail($id);
+        $diplome = Diplome::findOrFail($id);
         $data=$request->all();
-        $category->update($data);
-        return redirect('admin/category');
-
+        $diplome->update($data);
+        return redirect('admin/diplome');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Category  $category
+     * @param  \App\Models\Diplome  $diplome
      * @return \Illuminate\Http\Response
      */
-
     public function destroy($id)
     {
-        $category= Category::findOrFail($id);
-        $category->destroy($id);
-        return redirect('admin/category');
+        $diplome= Diplome::findOrfail($id);
+        $diplome->destroy($id);
+        return redirect('admin/diplome');
 
     }
 }

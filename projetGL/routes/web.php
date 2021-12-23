@@ -55,7 +55,6 @@ Route::prefix('/admin')->group(function () {
         Route::delete('/{id}', 'App\Http\Controllers\Admin\MatieresController@destroy');
     });
 
-
 Route::prefix('/category')->group(function(){
     Route::get('/create','App\Http\Controllers\CategoryController@create') ;
     Route::post('/ajout','App\Http\Controllers\CategoryController@store') ;
@@ -66,6 +65,7 @@ Route::prefix('/category')->group(function(){
     Route::get('/delete/{id}','App\Http\Controllers\CategoryController@destroy') ;
 
     });
+<<<<<<< HEAD
     Route::prefix('/examen')->group(function(){
     Route::get('/create','App\Http\Controllers\ExamenController@create');
     Route::post('/ajout','App\Http\Controllers\ExamenController@store');
@@ -76,7 +76,23 @@ Route::prefix('/category')->group(function(){
     Route::get('/delete/{id}','App\Http\Controllers\ExamenController@destroy');
 
     });
+=======
+
+
+Route::prefix('/category')->group(function(){
+    Route::get('/create','App\Http\Controllers\CategoryController@create') ;
+    Route::post('/ajout','App\Http\Controllers\CategoryController@store') ;
+    Route::get('/','App\Http\Controllers\CategoryController@index') ;
+    Route::get('/detail/{id}','App\Http\Controllers\CategoryController@show') ;
+    Route::get('/edit/{id}','App\Http\Controllers\CategoryController@edit') ;
+    Route::post('/update/{id}','App\Http\Controllers\CategoryController@update') ;
+    Route::get('/delete/{id}','App\Http\Controllers\CategoryController@destroy') ;
 });
+>>>>>>> 4f2a3c6e98f36bba681bed7752ab067f63a3b05c
+});
+
+
+
 
 
 

@@ -14,7 +14,7 @@ class CreateDiplomesTable extends Migration
     public function up()
     {
         Schema::create('diplomes', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->date("année_obtention");
             $table->integer("apprenant_id")->unsigned();
             $table->enum("mention",['passable','bien','tres bien','excellent'])->default('passable');
