@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateEnseignantsTable extends Migration
 {
@@ -20,6 +21,8 @@ class CreateEnseignantsTable extends Migration
             $table->string('email')->nullable();
             $table->string('adresse')->nullable();
             $table->string('domaine')->nullable();
+            $table->integer('matiere_id')->unsigned();
+            $table->foreign('matiere_id')->references('id')->on('matieres')->onDelete('cascade');
             });
     }
 
