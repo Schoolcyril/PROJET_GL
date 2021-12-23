@@ -65,4 +65,8 @@ Route::prefix('/admin')->group(function () {
         Route::get('/delete/{id}', 'App\Http\Controllers\CategoryController@destroy');
     });
 
+    Route::prefix('/notes')->group(function (){
+        Route::get('/', 'App\Http\Controllers\NoteController@index');
+        Route::get('/create', 'App\Http\Controllers\NoteController@create');
+    });
 });
