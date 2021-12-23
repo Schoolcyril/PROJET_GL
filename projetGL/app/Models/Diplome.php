@@ -5,9 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class Diplome extends Model
 {
-   protected $fillable=['nom_cat','description'];
-
     use HasFactory;
+    protected $fillable= ['année_obtention','apprenant_id','mention'];
 }
