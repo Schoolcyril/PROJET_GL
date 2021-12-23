@@ -54,17 +54,6 @@ Route::prefix('/admin')->group(function () {
         Route::get('/create', 'App\Http\Controllers\Admin\MatieresController@create');
         Route::delete('/{id}', 'App\Http\Controllers\Admin\MatieresController@destroy');
     });
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-<<<<<<< HEAD
-    Route::prefix('/category')->group(function () {
-     Route::get('/create','App\Http\Controllers\CategoryController@create');
-     Route::post('/ajout','App\Http\Controllers\CategoryController@store');
-     Route::get('/','App\Http\Controllers\CategoryController@index');
-
-=======
-
 
 Route::prefix('/category')->group(function(){
     Route::get('/create','App\Http\Controllers\CategoryController@create') ;
@@ -76,23 +65,17 @@ Route::prefix('/category')->group(function(){
     Route::get('/delete/{id}','App\Http\Controllers\CategoryController@destroy') ;
 
     });
->>>>>>> 74b784e2d197cd266637049bf2152459b9cfd858
+
+
+Route::prefix('/category')->group(function(){
+    Route::get('/create','App\Http\Controllers\CategoryController@create') ;
+    Route::post('/ajout','App\Http\Controllers\CategoryController@store') ;
+    Route::get('/','App\Http\Controllers\CategoryController@index') ;
+    Route::get('/detail/{id}','App\Http\Controllers\CategoryController@show') ;
+    Route::get('/edit/{id}','App\Http\Controllers\CategoryController@edit') ;
+    Route::post('/update/{id}','App\Http\Controllers\CategoryController@update') ;
+    Route::get('/delete/{id}','App\Http\Controllers\CategoryController@destroy') ;
 });
-=======
-
-Route::prefix('/category')->group(function(){
-    Route::get('/create','App\Http\Controllers\CategoryController@create') ;
-    Route::post('/ajout','App\Http\Controllers\CategoryController@store') ;
-    Route::get('/','App\Http\Controllers\CategoryController@index') ;
-    Route::get('/detail/{id}','App\Http\Controllers\CategoryController@show') ;
-    Route::get('/edit/{id}','App\Http\Controllers\CategoryController@edit') ;
-    Route::post('/update/{id}','App\Http\Controllers\CategoryController@update') ;
-    Route::get('/delete/{id}','App\Http\Controllers\CategoryController@destroy') ;
-
-    });
->>>>>>> 74b784e2d197cd266637049bf2152459b9cfd858
-=======
->>>>>>> parent of 76da2fc (menu categorie)
 });
 
 
