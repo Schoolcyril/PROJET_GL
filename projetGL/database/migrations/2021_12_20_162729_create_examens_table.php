@@ -14,8 +14,9 @@ class CreateExamensTable extends Migration
     public function up()
     {
         Schema::create('examens', function (Blueprint $table) {
-            $table->id();
-            $table->date("examen");
+            $table->increments('id');
+            $table->date("date_debut");
+            $table->date("date_fin")->nullable();
             $table->integer("enseignant_id")->unsigned();
             $table->timestamps();
             $table->foreign('enseignant_id')->references('id')->on('enseignants')->onDelete('cascade');

@@ -5,25 +5,23 @@
         <thead>
             <tr>
                 <th>nom</th>
-                <th>Description</th>
-                <th>action</th>
+                <th>description</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($data as $item)
-            <tr>
-                <td>{{$item->nom_cat}}</td>
-                <td>{{$item->description}}</td>
-                <td>
-                    <a class="btn btn-info" href="{{url('admin/category/detail/'.$item->id)}}">detail</a>
-                    <a class="btn btn-primary" href="{{url('admin/category/edit/'.$item->id)}}">edit</a>
-                    <a class="btn btn-danger" href="{{url('admin/category/delete/'.$item->id)}}">delete</a>
-                </td>
-            </tr>
 
-            @endforeach
+    @foreach ($data as $item)
+        <tr><td>{{$item->nom_cat}}</td>
+            <td>{{$item->description}}</td>
+            <td>
+                <a href="{{url('admin/category/edit/'.$item->id)}}" class="btn btn-info">edit</a>
+                <a href="{{url('admin/category/detail/'.$item->id)}}" class="btn btn-info">detail</a>
+                <a href="{{url('admin/category/delete/'.$item->id)}}" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+    @endforeach
         </tbody>
     </table>
 </div>
 @endsection
-
