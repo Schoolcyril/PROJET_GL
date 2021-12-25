@@ -48,7 +48,7 @@ Route::prefix('/admin')->group(function () {
     });
 
     Route::prefix('/matieres')->group(function () {
-        Route::get('create', 'App\Http\Controllers\Admin\MatieresController@create');
+        Route::get('create/', 'App\Http\Controllers\Admin\MatieresController@create');
         Route::post('store', 'App\Http\Controllers\Admin\MatieresController@store');
         Route::get('/', 'App\Http\Controllers\Admin\MatieresController@index');
         Route::get('/{id}', 'App\Http\Controllers\Admin\MatieresController@show');
@@ -71,6 +71,16 @@ Route::prefix('/category')->group(function(){
     Route::prefix('/notes')->group(function (){
         Route::get('/', 'App\Http\Controllers\NoteController@index');
         Route::get('/create', 'App\Http\Controllers\NoteController@create');
+    });
+    Route::prefix('/chapitres')->group(function (){
+        Route::get('/', 'App\Http\Controllers\ChapitreController@index');
+        Route::get('/create', 'App\Http\Controllers\ChapitreController@create');
+        Route::Post('/store', 'App\Http\Controllers\ChapitreController@store');
+        Route::get('/{id}','App\Http\Controllers\ChapitreController@show') ;
+        Route::get('/{id}/edit','App\Http\Controllers\ChapitreController@edit') ;
+        Route::post('/update/{id}','App\Http\Controllers\ChapitreController@edit') ;
+        Route::delete('/{id}','App\Http\Controllers\ChapitreController@destroy') ;
+
     });
 });
 

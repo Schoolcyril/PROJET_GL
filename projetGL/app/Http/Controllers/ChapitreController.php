@@ -1,19 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests;
-
-use App\Models\Matiere;
+use App\Models\Chapitre;
 use Illuminate\Http\Request;
 
-class MatieresController extends Controller
+class ChapitreController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
     {
@@ -21,48 +18,47 @@ class MatieresController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $matieres = Matiere::where('nom', 'LIKE', "%$keyword%")
-                ->orWhere('code_matiere', 'LIKE', "%$keyword%")
-                ->orWhere('nbre_heures', 'LIKE', "%$keyword%")
+            $chapitres = Chapitre::where('titre', 'LIKE', "%$keyword%")
+                ->orWhere('resumé', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
-            $matieres = Matiere::latest()->paginate($perPage);
+            $chapitres = Chapitre::latest()->paginate($perPage);
         }
 
-        return view('admin.matieres.index', compact('matieres'));
+        return view('admin.chapitres.index', compact('chapitres'));
     }
 
     /**
      * Show the form for creating a new resource.
-
-     * @return \Illuminate\View\View
+     *
+     * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        return view('admin.matieres.create');
+        return view('admin.Chapitres.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         $this->validate($request, [
-			'nom' => 'required'
+			'titre' => 'required',
+			'resumé' => 'required'
 
 		]);
         $requestData = $request->all();
 
-        Matiere::create($requestData);
+        Chapitre::create($requestData);
 
-        return redirect('admin/matieres')->with('flash_message', 'Matiere added!');
+        return redirect('admin/chapitres/create')->with('flash_message', 'Chapitre ajouté');
     }
 
-    /**
+     /**
      * Display the specified resource.
      *
      * @param  int  $id
@@ -71,12 +67,12 @@ class MatieresController extends Controller
      */
     public function show($id)
     {
-        $matiere = Matiere::findOrFail($id);
+        $chapitre = Chapitre::findOrFail($id);
 
-        return view('admin.matieres.show', compact('matiere'));
+        return view('admin.chapitres.show', compact('chapitre'));
     }
 
-    /**
+     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -85,10 +81,10 @@ class MatieresController extends Controller
      */
     public function edit($id)
     {
-        $matiere = Matiere::findOrFail($id);
-
-        return view('admin.matieres.edit', compact('matiere'));
+        $chapitre = Chapitre::findOrFail($id);
+        return view('admin.chapitres.edit', compact('chapitre'));
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -101,17 +97,19 @@ class MatieresController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-			'nom' => 'required'
+			'titre' => 'required',
+			'resumé' => 'required'
 					]);
         $requestData = $request->all();
 
-        $matiere = Matiere::findOrFail($id);
-        $matiere->update($requestData);
+        $chapitre = chapitre::findOrFail($id);
+        $chapitre->update($requestData);
 
-        return redirect('admin/matieres')->with('flash_message', 'Matiere updated!');
+        return redirect('admin/chapitres')->with('flash_message', 'chapitre updated!');
     }
 
-    /**
+
+  /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
@@ -120,8 +118,8 @@ class MatieresController extends Controller
      */
     public function destroy($id)
     {
-        Matiere::destroy($id);
+        Chapitre::destroy($id);
 
-        return redirect('admin/matieres')->with('flash_message', 'Matiere deleted!');
+        return redirect('admin/chapitres')->with('flash_message', 'chapitre deleted!');
     }
 }

@@ -16,7 +16,7 @@ class CreateChapitresTable extends Migration
         Schema::create('chapitres', function (Blueprint $table) {
             $table->increments('id');
             $table->string("titre");
-            $table->string("resumé");
+            $table->text("resumé");
             $table->timestamps();
         });
     }
