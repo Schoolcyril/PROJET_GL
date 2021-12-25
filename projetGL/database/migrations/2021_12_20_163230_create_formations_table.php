@@ -18,9 +18,9 @@ class CreateFormationsTable extends Migration
             $table->string("nom_for");
             $table->date("date_debut");
             $table->date("date_fin");
-            $table->integer('categorie_id')->unsigned();
+            $table->integer('category_id')->unsigned();
             $table->timestamps();
-            $table->foreign('categorie_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
         });
     }
 

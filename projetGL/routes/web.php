@@ -81,7 +81,29 @@ Route::prefix('/category')->group(function(){
         Route::post('/update/{id}','App\Http\Controllers\ChapitreController@edit') ;
         Route::delete('/{id}','App\Http\Controllers\ChapitreController@destroy') ;
 
+<<<<<<< HEAD
     });
+=======
+Route::prefix('/category')->group(function(){
+    Route::get('/create','App\Http\Controllers\CategoryController@create') ;
+    Route::post('/ajout','App\Http\Controllers\CategoryController@store') ;
+    Route::get('/','App\Http\Controllers\CategoryController@index') ;
+    Route::get('/detail/{id}','App\Http\Controllers\CategoryController@show') ;
+    Route::get('/edit/{id}','App\Http\Controllers\CategoryController@edit') ;
+    Route::post('/update/{id}','App\Http\Controllers\CategoryController@update') ;
+    Route::get('/delete/{id}','App\Http\Controllers\CategoryController@destroy') ;
+});
+
+Route::prefix('/diplome')->group(function(){
+    Route::get('/create','App\Http\Controllers\DiplomeController@create') ;
+    Route::post('/ajout','App\Http\Controllers\DiplomeController@store') ;
+    Route::get('/','App\Http\Controllers\DiplomeController@index') ;
+    Route::get('/detail/{id}','App\Http\Controllers\DiplomeController@show') ;
+    Route::get('/edit/{id}','App\Http\Controllers\DiplomeController@edit') ;
+    Route::post('/update/{id}','App\Http\Controllers\DiplomeController@update') ;
+    Route::get('/delete/{id}','App\Http\Controllers\DiplomeController@destroy') ;
+});
+>>>>>>> 5f4a9f528c58ea5985531627a3c56896a6d5e481
 });
 
 
