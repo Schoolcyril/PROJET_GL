@@ -16,7 +16,9 @@ class ExamenController extends Controller
      */
     public function index()
     {
-        $data=Examen::latest()->get();
+        $data=Examen::select('examens.examen','examens.id as id','enseignants.nom as nom')
+            ->join('enseignants','examens.enseignant_id','=','enseignants.id')
+            ->get();
         return view('admin\Examen\index',compact('data'));
     }
 
@@ -26,8 +28,8 @@ class ExamenController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('admin\Examen\create');
+    {   $ens=Enseignant::all();
+        return view('admin\Examen\create',compact('ens'));
     }
 
     /**
@@ -51,8 +53,12 @@ class ExamenController extends Controller
      */
     public function show($id)
     {
-        $examen=Examen::findOrFail($id);
-       return view('admin\Examen\show',compact('examen'));
+
+        $data=Examen::select('enseignants.nom as nom','examens.created_at as created_at',
+        'examens.examen as examen','examens.id as id' )->
+        join('enseignants','enseignants.id','=','examens.enseignant_id')->where('examens.id',$id)->get();
+
+       return view('admin\Examen\show',compact('data'));
     }
 
     /**
@@ -64,7 +70,8 @@ class ExamenController extends Controller
     public function edit($id)
     {
          $examen=Examen::findOrFail($id);
-        return view('admin\Examen\edit',compact('examen'));
+         $enseignant=Enseignant::all();
+        return view('admin\Examen\edit',compact('examen','enseignant'));
     }
 
     /**
