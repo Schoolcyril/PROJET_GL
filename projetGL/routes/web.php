@@ -80,16 +80,7 @@ Route::prefix('/category')->group(function(){
         Route::get('/{id}/edit','App\Http\Controllers\ChapitreController@edit') ;
         Route::post('/update/{id}','App\Http\Controllers\ChapitreController@edit') ;
         Route::delete('/{id}','App\Http\Controllers\ChapitreController@destroy') ;
-
-Route::prefix('/category')->group(function(){
-    Route::get('/create','App\Http\Controllers\CategoryController@create') ;
-    Route::post('/ajout','App\Http\Controllers\CategoryController@store') ;
-    Route::get('/','App\Http\Controllers\CategoryController@index') ;
-    Route::get('/detail/{id}','App\Http\Controllers\CategoryController@show') ;
-    Route::get('/edit/{id}','App\Http\Controllers\CategoryController@edit') ;
-    Route::post('/update/{id}','App\Http\Controllers\CategoryController@update') ;
-    Route::get('/delete/{id}','App\Http\Controllers\CategoryController@destroy') ;
-});
+    });
 
 Route::prefix('/diplome')->group(function(){
     Route::get('/create','App\Http\Controllers\DiplomeController@create') ;
