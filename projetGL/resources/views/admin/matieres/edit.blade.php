@@ -19,8 +19,8 @@
                             </ul>
                         @endif
 
-                        <form method="POST" action="{{ url('/admin/matieres/' . $matiere->id) }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
-                            {{ method_field('PATCH') }}
+                        <form method="POST" action="{{ url('/admin/matieres/update/' . $matiere->id) }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+                            {{ method_field('POST') }}
                             {{ csrf_field() }}
 
                             @include ('admin.matieres.form', ['formMode' => 'edit'])
