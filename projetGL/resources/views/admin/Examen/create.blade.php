@@ -9,7 +9,11 @@
 </div>
 <div class="col-12">
     <label for="" class="control-label" >Enseignant:</label>
-<input type="integer" name="enseignant_id" class="form-control" >
+<select name="enseignant_id" id="">
+    @foreach ($ens as $en)
+    <option value="{{$en->id}}">{{$en->nom}}</option>
+    @endforeach
+</select>
 </div><br> <br>
 
 <div class="row form-group">
