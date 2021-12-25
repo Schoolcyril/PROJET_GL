@@ -15,7 +15,7 @@ class CreateComptesTable extends Migration
     {
         Schema::create('comptes', function (Blueprint $table) {
             $table->id();
-            $table->enum("type_compte",['admin','apprenant']);
+            $table->enum("type_compte",['admin','apprenant','enseignant']);
             $table->timestamps();
         });
     }

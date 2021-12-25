@@ -18,7 +18,7 @@
                     {{$item->année_obtention}}
                 </td>
                 <td>
-                    {{$item->apprenant_id}}
+                    {{$item->nom}}
                 </td>
                 <td>
                     {{$item->mention}}
