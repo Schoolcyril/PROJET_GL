@@ -16,8 +16,6 @@ class CreateApprenantFormationsTable extends Migration
         Schema::create('apprenant__formations', function (Blueprint $table) {
             $table->unsignedInteger('apprenant_id');
             $table->unsignedInteger('formation_id');
-            $table->date("date_deb");
-            $table->date("date_fin");
             $table->timestamps();
             $table->foreign('apprenant_id')->references('id')->on('apprenants')->onDelete('cascade');
             $table->foreign('formation_id')->references('id')->on('formations')->onDelete('cascade');
