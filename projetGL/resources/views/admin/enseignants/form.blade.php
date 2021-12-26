@@ -23,7 +23,14 @@
     <input class="form-control" name="domaine" type="text" id="domaine" value="{{ isset($enseignant->domaine) ? $enseignant->domaine : ''}}" >
     {!! $errors->first('domaine', '<p class="help-block">:message</p>') !!}
 </div>
-
+<div class="form-group">
+        <label>Matieres</label>
+        <select name="matiere_id[]" class="select2" multiple="multiple" data-placeholder="Choisissez vos matieres" style="width: 100%;">
+            @foreach ($matiere as $item)
+            <option value="{{$item->id}}">{{$item->nom}}</option>
+            @endforeach
+    </select>
+</div>
 
 <div class="form-group">
     <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'Create' }}">

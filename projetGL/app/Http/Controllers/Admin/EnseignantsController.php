@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
 use App\Models\Enseignant;
+use App\Models\Matiere;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class EnseignantsController extends Controller
 {
@@ -41,7 +43,8 @@ class EnseignantsController extends Controller
      */
     public function create()
     {
-        return view('admin.enseignants.create');
+        $matiere = Matiere::all();
+        return view('admin.enseignants.create',compact('matiere'));
     }
 
     /**
@@ -57,10 +60,14 @@ class EnseignantsController extends Controller
 			'nom' => 'required|max:10',
 			'email' => 'required'
 		]);
-        $requestData = $request->all();
-
-        Enseignant::create($requestData);
-
+        $requestData = $request->only('nom', 'numero_tel', 'email', 'adresse', 'domaine');
+        $enseignant = Enseignant::create($requestData);
+            for ($i=0; $i < count($request->matiere_id); $i++) {
+                DB::table('enseignant_matieres')->insert([
+                    'enseignant_id'=> $enseignant->id,
+                    'matiere_id'=> $request->matiere_id[$i]
+                ]);
+            }
         return redirect('admin/enseignants')->with('flash_message', 'Enseignant added!');
     }
 
@@ -88,8 +95,9 @@ class EnseignantsController extends Controller
     public function edit($id)
     {
         $enseignant = Enseignant::findOrFail($id);
+        $matiere = Matiere::all();
 
-        return view('admin.enseignants.edit', compact('enseignant'));
+        return view('admin.enseignants.edit', compact('enseignant','matiere'));
     }
 
     /**
