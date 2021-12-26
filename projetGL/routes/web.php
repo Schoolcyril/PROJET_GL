@@ -48,7 +48,7 @@ Route::prefix('/admin')->group(function () {
     });
 
     Route::prefix('/matieres')->group(function () {
-        Route::get('create', 'App\Http\Controllers\Admin\MatieresController@create');
+        Route::get('create/', 'App\Http\Controllers\Admin\MatieresController@create');
         Route::post('store', 'App\Http\Controllers\Admin\MatieresController@store');
         Route::get('/', 'App\Http\Controllers\Admin\MatieresController@index');
         Route::get('/{id}', 'App\Http\Controllers\Admin\MatieresController@show');
@@ -68,15 +68,19 @@ Route::prefix('/category')->group(function(){
 
     });
 
-Route::prefix('/category')->group(function(){
-    Route::get('/create','App\Http\Controllers\CategoryController@create') ;
-    Route::post('/ajout','App\Http\Controllers\CategoryController@store') ;
-    Route::get('/','App\Http\Controllers\CategoryController@index') ;
-    Route::get('/detail/{id}','App\Http\Controllers\CategoryController@show') ;
-    Route::get('/edit/{id}','App\Http\Controllers\CategoryController@edit') ;
-    Route::post('/update/{id}','App\Http\Controllers\CategoryController@update') ;
-    Route::get('/delete/{id}','App\Http\Controllers\CategoryController@destroy') ;
-});
+    Route::prefix('/notes')->group(function (){
+        Route::get('/', 'App\Http\Controllers\NoteController@index');
+        Route::get('/create', 'App\Http\Controllers\NoteController@create');
+    });
+    Route::prefix('/chapitres')->group(function (){
+        Route::get('/', 'App\Http\Controllers\ChapitreController@index');
+        Route::post('/ajout', 'App\Http\Controllers\ChapitreController@store');
+        Route::get('/create', 'App\Http\Controllers\ChapitreController@create');
+        Route::get('/{id}','App\Http\Controllers\ChapitreController@show') ;
+        Route::get('/{id}/edit','App\Http\Controllers\ChapitreController@edit') ;
+        Route::post('/update/{id}','App\Http\Controllers\ChapitreController@update') ;
+        Route::delete('/{id}','App\Http\Controllers\ChapitreController@destroy') ;
+    });
 
 Route::prefix('/diplome')->group(function(){
     Route::get('/create','App\Http\Controllers\DiplomeController@create') ;

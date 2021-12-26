@@ -13,14 +13,6 @@
     <input class="form-control" name="nbre_heures" type="number" id="nbre_heures" value="{{ isset($matiere->nbre_heures) ? $matiere->nbre_heures : ''}}" >
     {!! $errors->first('nbre_heures', '<p class="help-block">:message</p>') !!}
 </div>
-
-<div class="form-group {{ $errors->has('chapitre_id') ? 'has-error' : ''}}">
-    <label for="chapitre_id" class="control-label">{{ 'Chapitre Id' }}</label>
-    <input class="form-control" name="chapitre_id" type="number" id="chapitre_id" value="{{ isset($matiere->chapitre_id) ? $matiere->chapitre_id : ''}}" >
-    {!! $errors->first('chapitre_id', '<p class="help-block">:message</p>') !!}
-</div>
-
-
 <div class="form-group">
     <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'Create' }}">
 </div>

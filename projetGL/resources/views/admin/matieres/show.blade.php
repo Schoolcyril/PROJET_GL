@@ -22,10 +22,16 @@
                         <div class="table-responsive">
                             <table class="table">
                                 <tbody>
-                                    <tr>
-                                        <th>ID</th><td>{{ $matiere->id }}</td>
-                                    </tr>
-                                    <tr><th> Nom </th><td> {{ $matiere->nom }} </td></tr><tr><th> Code Matiere </th><td> {{ $matiere->code_matiere }} </td></tr><tr><th> Nbre Heures </th><td> {{ $matiere->nbre_heures }} </td></tr>
+                                    <tr><th>ID</th><td>{{ $matiere->id }}</td></tr>
+                                    <tr><th> Nom </th><td> {{ $matiere->nom }} </td></tr>
+                                    <tr><th> Code Matiere </th><td> {{ $matiere->code_matiere }} </td></tr>
+                                    <tr><th> Nbre Heures </th><td> {{ $matiere->nbre_heures }} </td></tr><br/>
+                                    <tr><th>N° CHAP </th><th>Titre </th><th> Résumé</th></tr>
+                                    @foreach ($matiere->chapitres as $chapitre)
+                                    <tr> <td>{{ $loop->iteration }}</td>
+                                        <td> {{ $chapitre->titre }} </td>
+                                        <td> {{ $chapitre->resumé }} </td></tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
