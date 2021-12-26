@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Chapitre;
+use App\Models\Matiere;
 use Illuminate\Http\Request;
 
 class ChapitreController extends Controller
@@ -46,16 +47,23 @@ class ChapitreController extends Controller
      */
     public function store(Request $request)
     {
+
         $this->validate($request, [
 			'titre' => 'required',
-			'resumé' => 'required'
+			'resumé' => 'required',
+            'matiere_nom'=>'required'
 
 		]);
-        $requestData = $request->all();
 
-        Chapitre::create($requestData);
+        $matiere = Matiere::where('nom',$request->matiere_nom)->firstOrFail();
 
-        return redirect('admin/chapitres/create')->with('flash_message', 'Chapitre ajouté');
+        Chapitre::create([
+            'titre' =>$request->titre,
+			'resumé' => $request->resumé,
+            'matiere_id'=>$matiere->id
+        ]);
+
+        return redirect('admin/chapitres')->with('flash_message', 'Chapitre ajouté');
     }
 
      /**
@@ -98,10 +106,16 @@ class ChapitreController extends Controller
     {
         $this->validate($request, [
 			'titre' => 'required',
-			'resumé' => 'required'
-					]);
-        $requestData = $request->all();
+			'resumé' => 'required',
+            'matiere_nom'=>'required'
 
+					]);
+        $matiere = Matiere::where('nom',$request->matiere_nom)->firstOrFail();
+        $requestData = [
+            'titre' =>$request->titre,
+			'resumé' => $request->resumé,
+            'matiere_id'=>$matiere->id
+        ];
         $chapitre = chapitre::findOrFail($id);
         $chapitre->update($requestData);
 

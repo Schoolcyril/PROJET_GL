@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
-
+use App\Models\Chapitre;
 use App\Models\Matiere;
 use Illuminate\Http\Request;
 
@@ -120,6 +120,12 @@ class MatieresController extends Controller
      */
     public function destroy($id)
     {
+        $matiere = Matiere::findOrFail($id);
+        foreach($matiere->chapitres as $chapitre)
+        {
+            Chapitre::destroy($chapitre->id);
+        }
+
         Matiere::destroy($id);
 
         return redirect('admin/matieres')->with('flash_message', 'Matiere deleted!');

@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateMatieresTable extends Migration
 {
@@ -18,8 +19,6 @@ class CreateMatieresTable extends Migration
             $table->string('nom')->nullable();
             $table->string('code_matiere')->nullable();
             $table->integer('nbre_heures')->nullable();
-            $table->integer('chapitre_id')->nullable()->unsigned();
-            $table->foreign('chapitre_id')->references('id')->on('chapitres')->onDelete('cascade');
             });
     }
 

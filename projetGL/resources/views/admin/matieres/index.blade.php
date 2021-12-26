@@ -39,6 +39,7 @@
                                         <td>
                                             <a href="{{ url('/admin/matieres/' . $item->id) }}" title="View Matiere"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                             <a href="{{ url('/admin/matieres/' . $item->id . '/edit') }}" title="Edit Matiere"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+                                            <a href="{{ url('/admin/chapitres/create') }}" title="ajpouter chapitre"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Ajouter chapitre</button></a>
 
                                             <form method="POST" action="{{ url('/admin/matieres' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
                                                 {{ method_field('DELETE') }}

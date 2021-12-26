@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models;
-
+use App\Models\Chapitre;
 use Illuminate\Database\Eloquent\Model;
 
 class Matiere extends Model
@@ -25,7 +25,11 @@ class Matiere extends Model
      *
      * @var array
      */
-    protected $fillable = ['nom', 'code_matiere', 'nbre_heures','nom_chapitre'];
+    protected $fillable = ['nom', 'code_matiere', 'nbre_heures'];
 
+    public function chapitres()
+    {
+        return $this->hasMany(Chapitre::class);
+    }
 
 }

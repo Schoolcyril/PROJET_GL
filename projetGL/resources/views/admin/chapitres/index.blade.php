@@ -28,7 +28,7 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>#</th><th>Titre</th><th>Résumé</th><th>Actions</th>
+                                        <th>#</th><th>Titre</th><th>Résumé</th><th>Nom matiere</th><th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -36,6 +36,7 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->titre }}</td><td>{{ $item->resumé }}</td>
+                                        <td>{{ $item->matiere->nom}}</td>
                                         <td>
                                             <a href="{{ url('/admin/chapitres/' . $item->id) }}" title="View Chapitre"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                             <a href="{{ url('/admin/chapitres/' . $item->id . '/edit') }}" title="Edit Chapitre"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>

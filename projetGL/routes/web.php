@@ -74,11 +74,11 @@ Route::prefix('/category')->group(function(){
     });
     Route::prefix('/chapitres')->group(function (){
         Route::get('/', 'App\Http\Controllers\ChapitreController@index');
+        Route::post('/ajout', 'App\Http\Controllers\ChapitreController@store');
         Route::get('/create', 'App\Http\Controllers\ChapitreController@create');
-        Route::Post('/store', 'App\Http\Controllers\ChapitreController@store');
         Route::get('/{id}','App\Http\Controllers\ChapitreController@show') ;
         Route::get('/{id}/edit','App\Http\Controllers\ChapitreController@edit') ;
-        Route::post('/update/{id}','App\Http\Controllers\ChapitreController@edit') ;
+        Route::post('/update/{id}','App\Http\Controllers\ChapitreController@update') ;
         Route::delete('/{id}','App\Http\Controllers\ChapitreController@destroy') ;
     });
 

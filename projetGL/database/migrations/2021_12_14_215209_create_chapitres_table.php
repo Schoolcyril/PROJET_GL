@@ -18,6 +18,8 @@ class CreateChapitresTable extends Migration
             $table->string("titre");
             $table->text("resumé");
             $table->timestamps();
+            $table->integer('matiere_id')->nullable()->unsigned();
+            $table->foreign('matiere_id')->references('id')->on('matieres');
         });
     }
 

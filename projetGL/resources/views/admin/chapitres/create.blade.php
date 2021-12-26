@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-header">Create New Matiere</div>
                     <div class="card-body">
-                        <a href="{{ url('/admin/matieres/create') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
+                        <a href="{{ url('/admin/chapitres') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
                         <br />
                         <br />
 
@@ -19,7 +19,7 @@
                             </ul>
                         @endif
 
-                        <form method="POST" action="{{ url('/admin/chapitres/store') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+                        <form method="POST" action="{{ url('/admin/chapitres/ajout') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
                             {{ csrf_field() }}
 
                             @include ('admin.chapitres.form', ['formMode' => 'create'])

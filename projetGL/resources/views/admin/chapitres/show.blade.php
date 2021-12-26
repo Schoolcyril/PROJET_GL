@@ -25,7 +25,9 @@
                                     <tr>
                                         <th>ID</th><td>{{ $chapitre->id }}</td>
                                     </tr>
-                                    <tr><th> Nom </th><td> {{ $chapitre->titre }} </td></tr><tr><th> Resumé </th><td> {{ $chapitre->resumé}} </td>
+                                    <tr><th> Nom </th><td> {{ $chapitre->titre }} </td></tr>
+                                    <tr><th> Resumé </th><td> {{ $chapitre->resumé}} </td>
+                                    <tr><th>Nom matiere </th><td> {{ $chapitre->matiere->nom}}</td>
                                 </tbody>
                             </table>
                         </div>
