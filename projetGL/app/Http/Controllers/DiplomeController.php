@@ -53,7 +53,9 @@ class DiplomeController extends Controller
      */
     public function show($id)
     {
-        $diplome= Diplome::findOrfail($id);
+        $diplome=Diplome::select('diplomes.id','diplomes.année_obtention','diplomes.mention','apprenants.nom as nom')
+        ->join('apprenants','diplomes.apprenant_id','=','apprenants.id')
+        ->where('diplomes.id',$id)->first();
         return view('admin.diplome.show',compact('diplome'));
     }
 

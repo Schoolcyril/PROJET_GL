@@ -68,7 +68,6 @@ Route::prefix('/category')->group(function(){
 
     });
 
-
 Route::prefix('/category')->group(function(){
     Route::get('/create','App\Http\Controllers\CategoryController@create') ;
     Route::post('/ajout','App\Http\Controllers\CategoryController@store') ;
@@ -86,7 +85,7 @@ Route::prefix('/diplome')->group(function(){
     Route::get('/detail/{id}','App\Http\Controllers\DiplomeController@show') ;
     Route::get('/edit/{id}','App\Http\Controllers\DiplomeController@edit') ;
     Route::post('/update/{id}','App\Http\Controllers\DiplomeController@update') ;
-    Route::get('/delete/{id}','App\Http\Controllers\DiplomeController@destroy') ;
+    Route::delete('/delete/{id}','App\Http\Controllers\DiplomeController@destroy') ;
 });
 });
 
