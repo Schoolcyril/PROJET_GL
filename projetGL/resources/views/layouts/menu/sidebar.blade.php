@@ -197,8 +197,8 @@
               <p>
                 Examens
                 <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
+             </p>
+             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="{{url('admin/examen')}}" class="nav-link">
@@ -207,7 +207,6 @@
                 </a>
               </li>
               <li class="nav-item">
-
                 <a href="{{url('admin/examen/create')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Ajouter</p>
@@ -215,7 +214,6 @@
               </li>
             </ul>
           </li>
-
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
