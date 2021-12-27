@@ -91,6 +91,16 @@ Route::prefix('/diplome')->group(function(){
     Route::post('/update/{id}','App\Http\Controllers\DiplomeController@update') ;
     Route::delete('/delete/{id}','App\Http\Controllers\DiplomeController@destroy') ;
 });
+Route::prefix('/examen')->group(function () {
+    Route::get('create/', 'App\Http\Controllers\Admin\examenController@create');
+    Route::post('store', 'App\Http\Controllers\Admin\examenController@store');
+    Route::get('/', 'App\Http\Controllers\Admin\examenController@index');
+    Route::get('/{id}', 'App\Http\Controllers\Admin\examenController@show');
+    Route::get('/{id}/edit', 'App\Http\Controllers\Admin\examenController@edit');
+    Route::post('/update/{id}', 'App\Http\Controllers\Admin\examenController@update');
+    Route::delete('/{id}', 'App\Http\Controllers\Admin\examenController@destroy');
+});
+
 });
 
 

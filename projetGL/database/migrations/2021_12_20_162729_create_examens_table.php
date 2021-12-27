@@ -15,10 +15,11 @@ class CreateExamensTable extends Migration
     {
         Schema::create('examens', function (Blueprint $table) {
             $table->increments('id');
-            $table->date("date_debut");
-            $table->date("date_fin")->nullable();
+            $table->date("date");
+            $table->time("Heure_deb")->nullable();
+            $table->time("Heure_fin")->nullable();
             $table->integer("enseignant_id")->unsigned();
-            $table->timestamps();                   
+            $table->timestamps();
             $table->foreign('enseignant_id')->references('id')->on('enseignants')->onDelete('cascade');
         });
     }
