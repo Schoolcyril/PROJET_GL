@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App\Models\Enseignant;
 use App\Models\Examen;
+use App\Models\Formation;
+use App\Models\Matiere;
 use Illuminate\Http\Request;
 
 class examenController extends Controller
@@ -18,10 +20,7 @@ class examenController extends Controller
     public function index()
     {
 
-        $examen=Examen::select('enseignants.nom as nom','enseignants.id as id','examens.date',
-        'examens.Heure_deb','examens.Heure_fin','examens.id')->
-        join('enseignants','enseignants.id','=','examens.enseignant_id')->orderBy('examens.date')->get();
-
+        $examen=Examen::all();
         return view('admin.examen.index', compact('examen'));
     }
 
@@ -31,9 +30,9 @@ class examenController extends Controller
      * @return \Illuminate\View\View
      */
     public function create()
-    {   $ens=Examen::select('enseignants.nom as nom','enseignants.id as id')->
-        join('enseignants','enseignants.id','=','examens.enseignant_id')->get();
-        return view('admin.examen.create',compact('ens'));
+    {   $matieres=Matiere::all();
+        $formations=Formation::all();
+        return view('admin.examen.create',compact('matieres','formations'));
     }
 
     /**
@@ -45,17 +44,11 @@ class examenController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-			'date' => 'required',
-			'Heure_deb' => 'required',
-			'Heure_fin' => 'required',
-            'enseignant_id'=>'required'
-					]);
-        $requestData = $request->all();
+      $form=Formation::findOrFail($request->formation_id);
+    
 
-        Examen::create($requestData);
+      return redirect('admin/examen/create')->with('flash_message', 'Examen failed!');
 
-        return redirect('admin/examen')->with('flash_message', 'Examen added!');
     }
 
     /**

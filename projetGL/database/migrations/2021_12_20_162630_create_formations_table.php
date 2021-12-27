@@ -16,6 +16,7 @@ class CreateFormationsTable extends Migration
         Schema::create('formations', function (Blueprint $table) {
             $table->increments('id');
             $table->string("nom_for");
+            $table->string("code_for");
             $table->date("date_debut");
             $table->date("date_fin");
             $table->integer('category_id')->unsigned();

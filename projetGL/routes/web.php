@@ -67,15 +67,7 @@ Route::prefix('/category')->group(function(){
     Route::get('/delete/{id}','App\Http\Controllers\CategoryController@destroy') ;
 
     });
-    Route::prefix('/examen')->group(function(){
-    Route::get('/create','App\Http\Controllers\ExamenController@create');
-    Route::post('/ajout','App\Http\Controllers\ExamenController@store');
-    Route::get('/','App\Http\Controllers\ExamenController@index');
-    Route::get('/detail/{id}','App\Http\Controllers\ExamenController@show');
-    Route::get('/edit/{id}','App\Http\Controllers\ExamenController@edit');
-    Route::post('/update/{id}','App\Http\Controllers\ExamenController@update');
-    Route::get('/delete/{id}','App\Http\Controllers\ExamenController@destroy');
-});
+   
 
     Route::prefix('/notes')->group(function (){
         Route::get('/', 'App\Http\Controllers\NoteController@index');

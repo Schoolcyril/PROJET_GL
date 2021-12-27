@@ -13,10 +13,26 @@
     <input class="form-control" name="Heure_fin" type="time" id="Heure_fin" value="{{ isset($examen->Heure_fin) ? $examen->Heure_fin : ''}}" >
     {!! $errors->first('f', '<p class="help-block">:message</p>') !!}
 </div>
-<label for="enseignant_id" >{{ 'Enseignant:' }}</label>
-<select name="enseignant_id" class="control-label" type="number" id="enseignant_id">
-    @foreach ($ens as $item)
-    <option value="{{$item->id}}" @if (isset($examen) && $item->id ==$examen->enseignant_id)
+
+<div class="form-group {{ $errors->has('formation_id') ? 'has-error' : ''}}">
+<label for="code_for" >{{ 'Code formation:' }}</label>
+<select name="formation_id" class="control-label" type="number" id="code_for">
+    @foreach ($formations as $item)
+    <option value="{{$item->id}}" @if (isset($examen) && $item->id ==$examen->formation_id)
+        selected
+    @endif >
+         {{$item->code_for}}
+  </option>
+  @endforeach
+
+</select>
+</div>
+
+<div class="form-group {{ $errors->has('matiere_id') ? 'has-error' : ''}}">
+<label for="matiere_id" >{{ 'Matiere:' }}</label>
+<select name="matiere_id" class="control-label" type="number" id="matiere_id">
+    @foreach ($matieres as $item)
+    <option value="{{$item->id}}" @if (isset($examen) && $item->id ==$examen->matiere_id)
         selected
     @endif >
          {{$item->nom}}
@@ -24,8 +40,8 @@
   @endforeach
 
 </select>
-
-
+{!! $errors->first('f', '<p class="help-block">:message</p>') !!}
+</div>
 <div class="form-group">
     <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'Create' }}">
 </div>

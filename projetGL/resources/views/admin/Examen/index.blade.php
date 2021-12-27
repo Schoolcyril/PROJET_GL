@@ -29,11 +29,11 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Code</th>
                                         <th>Date</th>
                                         <th>Heure de debut</th>
                                         <th>Heure de fin</th>
-                                        <th>Professeur</th>
+                                        <th>Matiere</th>
+                                        <th>Code formation</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -41,16 +41,18 @@
                                 @foreach($examen as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->id }}</td>
                                         <td>{{ $item->date }}</td>
                                         <td>{{ $item->Heure_deb }}</td>
                                         <td>{{ $item->Heure_fin }}</td>
-                                        <td>{{ $item->nom }}</td>
+                                        <td>{{ $item->matiere->nom }}</td>
+                                        <td>{{ $item->formation->code_for }}</td>
 
 
                                         <td>
                                             <a href="{{ url('/admin/examen/' . $item->id) }}" title="View Examen"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                             <a href="{{ url('/admin/examen/' . $item->id . '/edit') }}" title="Edit Examen"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+                                            <a href="{{ url('/admin/notes/' . $item->id . '/edit') }}" title="Edit Examen"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Remplir Notes </button></a>
+
                                             <form method="POST" action="{{ url('/admin/examen' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
                                                 {{ method_field('DELETE') }}
                                                 {{ csrf_field() }}
