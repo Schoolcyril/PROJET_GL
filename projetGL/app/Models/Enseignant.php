@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Enseignant extends Model
 {
+    use HasFactory;
     /**
      * The database table used by the model.
      *
@@ -27,5 +29,5 @@ class Enseignant extends Model
      */
     protected $fillable = ['nom', 'numero_tel', 'email', 'adresse', 'domaine'];
 
-    
+
 }
