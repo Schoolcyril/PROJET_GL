@@ -18,9 +18,11 @@ class CreateExamensTable extends Migration
             $table->date("date");
             $table->time("Heure_deb")->nullable();
             $table->time("Heure_fin")->nullable();
-            $table->integer("enseignant_id")->unsigned();
+            $table->integer("matiere_id")->unsigned();
+            $table->integer("formation_id")->unsigned();
             $table->timestamps();
-            $table->foreign('enseignant_id')->references('id')->on('enseignants')->onDelete('cascade');
+            $table->foreign('matiere_id')->references('id')->on('matieres')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('formation_id')->references('id')->on('formations')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

@@ -2,6 +2,8 @@
 
 namespace App\Models;
 use App\Models\Chapitre;
+use App\Models\Formation;
+use App\Models\Examen;
 use Illuminate\Database\Eloquent\Model;
 
 class Matiere extends Model
@@ -32,4 +34,12 @@ class Matiere extends Model
         return $this->hasMany(Chapitre::class);
     }
 
+    public function formations()
+    {
+        return $this->belongsToMany(Formation::class);
+    }
+    public function examens()
+    {
+        return $this->belongsToMany(Examens::class);
+    }
 }

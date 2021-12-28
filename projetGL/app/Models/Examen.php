@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Models;
-use App\Models\Enseignant;
+use App\Models\Formation;
+use App\Models\Matiere;
 use Illuminate\Database\Eloquent\Model;
 
 class Examen extends Model
@@ -25,6 +26,14 @@ class Examen extends Model
      *
      * @var array
      */
-    protected $fillable = ['date', 'Heure_deb', 'Heure_fin','enseignant_id'];
+    protected $fillable = ['date', 'Heure_deb', 'Heure_fin','matiere_id','formation_id'];
 
+    public function formation()
+    {
+        return $this->belongsTo(Formation::class);
+    }
+    public function matiere()
+    {
+        return $this->belongsTo(Matiere::class);
+    }
 }
