@@ -18,7 +18,7 @@ class matiereFactory extends Factory
         return [
             'nom'=> Str::random(10),
             'code_matiere'=> Str::random(10),
-            'nbre_heures'=>$this->faker->number
+            'nbre_heures'=>$this->faker->numerify()
         ];
     }
 }

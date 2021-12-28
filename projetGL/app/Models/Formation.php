@@ -3,6 +3,7 @@
 namespace App\Models;
 use App\Models\Matiere;
 use App\Models\Examen;
+use App\Models\Enseignant;
 use App\Models\Category;
 ;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -21,6 +22,20 @@ class Formation extends Model
     {
         return $this->belongsTo(Category::class);
     }
+    public function matieres()
+    {
+        return $this->belongsToMany(Matiere::class);
+    }
+    public function enseignants()
+    {
+        return $this->belongsToMany(Enseignant::class);
+    }
+    public function examens()
+    {
+        return $this->hasMany(Examen::class);
+    }
+
+
 
 }
 
