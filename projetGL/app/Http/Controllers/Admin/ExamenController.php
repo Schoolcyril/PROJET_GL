@@ -9,6 +9,7 @@ use App\Models\Examen;
 use App\Models\Formation;
 use App\Models\Matiere;
 use Illuminate\Http\Request;
+use PhpParser\Node\Stmt\Foreach_;
 
 class examenController extends Controller
 {
@@ -46,6 +47,10 @@ class examenController extends Controller
     {
       $form=Formation::findOrFail($request->formation_id);
 
+      foreach ($form->matieres as $matiere) {
+          if($matiere->id==$request->matiere_id);
+          return redirect('admin/examen')->with('flash_message', 'Examen added!');
+      }
 
       return redirect('admin/examen/create')->with('flash_message', 'Examen failed!');
 
