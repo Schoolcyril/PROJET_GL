@@ -119,7 +119,12 @@ class FormationController extends Controller
         $requestData = $request->all();
         $formation = Formation::findOrFail($id);
         $formation->update($requestData);
-
+        for ($i=0; $i < count($request->matiere_id); $i++) {
+            DB::table('formation_matiere')->update([
+                'formation_id'=> $formation->id,
+                'matiere_id'=> $request->matiere_id[$i]
+            ]);
+        }
         return redirect('admin/formation')->with('flash_message', 'Formation updated!');
     }
 

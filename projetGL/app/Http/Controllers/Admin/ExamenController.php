@@ -45,13 +45,13 @@ class examenController extends Controller
     public function store(Request $request)
     {
       $form=Formation::findOrFail($request->formation_id);
-    
+
 
       return redirect('admin/examen/create')->with('flash_message', 'Examen failed!');
 
     }
 
-    /**
+    /**:
      * Display the specified resource.
      *
      * @param  int  $id

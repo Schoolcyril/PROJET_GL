@@ -17,7 +17,7 @@ class Formation extends Model
    protected $fillable = ['code_for', 'nom_for', 'date_debut', 'date_fin', 'category_id'];
 
 
-   public function categorie()
+   public function category()
     {
         return $this->belongsTo(Category::class);
     }

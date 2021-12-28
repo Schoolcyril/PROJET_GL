@@ -28,7 +28,7 @@
                                     <tr><th> Nom de la formation: </th><td> {{ $formation->nom_for }} </td></tr>
                                     <tr><th> Date de debut:</th><td> {{ $formation->date_debut }} </td></tr>
                                     <tr><th>Date de fin: </th><td> {{ $formation->date_fin }} </td></tr>
-                                    <tr><th> Identifiant de la categorie: </th><td> {{ $formation->category_id }} </td></tr><br/>
+                                    <tr><th> nom de la categorie: </th><td> {{ $formation->category->nom_cat }} </td></tr><br/>
                                 </tbody>
                             </table>
                         </div>
