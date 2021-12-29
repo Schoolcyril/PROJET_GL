@@ -35,7 +35,7 @@
     <option value="{{$item->id}}" @if (isset($examen) && $item->id ==$examen->matiere_id)
         selected
     @endif >
-         {{$item->nom}}
+         {{$item->code_matiere}}
   </option>
   @endforeach
 

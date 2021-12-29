@@ -1,36 +1,40 @@
 @extends('layouts.app')
 
 @section('content')
-      <div class="container">
-          <table class="table">
-              <tr>
-                  <td>
-                      NOM:
-                  </td>
-                  <td>
-                  {{$category->nom_cat}}
-                </td>
-              </tr>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">category {{ $category->id }}</div>
+                    <div class="card-body">
 
-              <tr>
-                <td>
-                    description:
-                </td>
-                <td>
-                {{$category->description}}
-              </td>
-            </tr>
+                        <a href="{{ url('/admin/category') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
+                        <a href="{{ url('/admin/category/' . $category->id . '/edit') }}" title="Edit category"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
 
-            <tr>
-                <td>
-                    Date Creation:
-                </td>
-                <td>
-                {{$category->created_at}}
-              </td>
-            </tr>
+                        <form method="POST" action="{{ url('admin/category' . '/' . $category->id) }}" accept-charset="UTF-8" style="display:inline">
+                            {{ method_field('DELETE') }}
+                            {{ csrf_field() }}
+                            <button type="submit" class="btn btn-danger btn-sm" title="Delete category" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
+                        </form>
+                        <br/>
+                        <br/>
 
-          </table>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <th>ID</th><td>{{ $category->id }}</td>
+                                    </tr>
+                                    <tr><th> Nom categorie </th><td> {{ $category->nom_cat }} </td></tr>
+                                    <tr><th>Description </th><td> {{ $category->description}} </td>
 
-      </div>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

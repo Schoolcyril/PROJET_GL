@@ -12,10 +12,21 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data=Category::latest()->get();
-        return view('admin.Category.index',compact('data'));
+        $keyword = $request->get('search');
+        $perPage = 25;
+
+        if (!empty($keyword)) {
+            $categories = category::where('nom_cat', 'LIKE', "%$keyword%")
+                ->orWhere('description', 'LIKE', "%$keyword%")
+                ->latest()->paginate($perPage);
+        } else {
+            $categories = category::latest()->paginate($perPage);
+        }
+
+
+        return view('admin.Category.index',compact('categories'));
     }
 
     /**

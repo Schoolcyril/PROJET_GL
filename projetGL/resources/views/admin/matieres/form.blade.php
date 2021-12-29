@@ -14,5 +14,16 @@
     {!! $errors->first('nbre_heures', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group">
+    <label>Nom enseignant</label>
+    <select name="enseignant_id" class=""  style="width: 100%;">
+        <option value="" selected disabled>Choisissez une enseignant</option>
+        @foreach ($enseignants as $item)
+        <option value="{{$item->id}}" @if (isset($matiere) && $item->id ==$matiere->enseignant_id)
+            selected
+        @endif >{{$item->nom}}</option>
+        @endforeach
+</select>
+</div>
+<div class="form-group">
     <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'Create' }}">
 </div>

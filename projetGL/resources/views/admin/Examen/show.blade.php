@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    @foreach ($exam as $examen)
+
                     <div class="card-header">Examen{{ $examen->id }}</div>
                     <div class="card-body">
 
@@ -25,13 +25,15 @@
                                 <tbody>
                                     <tr><th>ID</th><td>{{ $examen->id }}</td></tr>
                                     <tr><th> Date </th><td> {{ $examen->date }} </td></tr>
-                                    <tr><th> Professeur </th><td> {{ $examen->nom }} </td></tr>
+                                    <tr><th> Code matiere </th><td> {{ $examen->matiere->code_matiere}} </td></tr>
                                     <tr><th>Heure de debut </th><td> {{ $examen->Heure_deb }} </td></tr>
                                     <tr><th> Heure de fin </th><td> {{ $examen->Heure_fin }} </td></tr><br/>
+                                    <tr><th>code matiere</th><td> {{ $examen->matiere->code_matiere }} </td></tr><br/>
+                                    <tr><th>code formation</th><td> {{ $examen->formation->code_for }} </td></tr><br/>
+                                    <tr><th> Professeur </th><td> {{ $examen->matiere->enseignant->nom }} </td></tr>
                                 </tbody>
                             </table>
                         </div>
-                    @endforeach
 
 
                     </div>

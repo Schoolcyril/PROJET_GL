@@ -30,7 +30,7 @@ class Matiere extends Model
      *
      * @var array
      */
-    protected $fillable = ['nom', 'code_matiere', 'nbre_heures'];
+    protected $fillable = ['nom', 'code_matiere', 'nbre_heures','enseignant_id'];
 
     public function chapitres()
     {
@@ -43,6 +43,10 @@ class Matiere extends Model
     }
     public function examens()
     {
-        return $this->belongsToMany(Examens::class);
+        return $this->hasMany(Examen::class);
+    }
+    public function enseignant()
+    {
+        return $this->belongsTo(Enseignant::class);
     }
 }

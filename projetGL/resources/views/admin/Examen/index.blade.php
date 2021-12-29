@@ -38,13 +38,13 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($examen as $item)
+                                @foreach($examens as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->date }}</td>
                                         <td>{{ $item->Heure_deb }}</td>
                                         <td>{{ $item->Heure_fin }}</td>
-                                        <td>{{ $item->matiere->nom }}</td>
+                                        <td>{{ $item->matiere->code_matiere }}</td>
                                         <td>{{ $item->formation->code_for }}</td>
 
 

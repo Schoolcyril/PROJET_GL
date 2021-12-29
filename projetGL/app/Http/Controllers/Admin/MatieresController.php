@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App\Models\Chapitre;
+use App\Models\Enseignant;
 use App\Models\Matiere;
 use Illuminate\Http\Request;
 
@@ -39,7 +40,8 @@ class MatieresController extends Controller
      */
     public function create()
     {
-        return view('admin.matieres.create');
+        $enseignants=Enseignant::all();
+        return view('admin.matieres.create',compact('enseignants'));
     }
 
     /**
@@ -85,9 +87,9 @@ class MatieresController extends Controller
      */
     public function edit($id)
     {
-        $matiere = Matiere::findOrFail($id);
-
-        return view('admin.matieres.edit', compact('matiere'));
+        $matieres = Matiere::findOrFail($id);
+        $enseignants=Enseignant::all();
+        return view('admin.matieres.edit', compact('matieres','enseignants'));
     }
 
     /**

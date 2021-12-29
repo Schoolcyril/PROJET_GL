@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Enseignant;
 use App\Models\Formation;
 use Illuminate\Http\Request;
 use App\Models\Matiere;
@@ -41,9 +42,10 @@ class FormationController extends Controller
      */
     public function create()
     {
-        $matiere = Matiere::all();
-        $categorie = Category::all();
-        return view('admin.formation.create',compact('matiere','categorie'));
+        $matieres = Matiere::all();
+        $enseignants =Enseignant::all();
+        $categories = Category::all();
+        return view('admin.formation.create',compact('matieres','categories','enseignants'));
     }
 
     /**
@@ -64,12 +66,22 @@ class FormationController extends Controller
         $requestData = $request->only('code_for', 'nom_for', 'date_debut', 'date_fin','category_id');
 
         $formation = Formation::create($requestData);
+        if($request->matiere_id!=""){
             for ($i=0; $i < count($request->matiere_id); $i++) {
                 DB::table('formation_matiere')->insert([
                     'formation_id'=> $formation->id,
                     'matiere_id'=> $request->matiere_id[$i]
                 ]);
             }
+        }
+        if($request->enseignant_id!=""){
+            for ($i=0; $i < count($request->enseignant_id); $i++) {
+                DB::table('enseignant_formation')->insert([
+                    'enseignant_id'=> $request->enseignant_id[$i],
+                    'formation_id'=> $formation->id,
+                ]);
+            }
+        }
         return redirect('admin/formation')->with('flash_message', 'Formation added!');
     }
 
@@ -96,9 +108,11 @@ class FormationController extends Controller
     public function edit($id)
     {
         $formation = Formation::findOrFail($id);
-        $matiere = Matiere::all();
-        $categorie = Category::all();
-        return view('admin.formation.edit', compact('formation','matiere','categorie'));
+
+        $matieres = Matiere::all();
+        $categories = Category::all();
+        $enseignants =Enseignant::all();
+        return view('admin.formation.edit', compact('formation','matieres','categories','enseignants'));
     }
 
     /**
@@ -120,6 +134,24 @@ class FormationController extends Controller
         $formation = Formation::findOrFail($id);
         $formation->update($requestData);
 
+        if($request->matiere_id!=""){
+            DB::table('formation_matiere')->where([['formation_id','=',$id]])->delete();
+                for ($i=0; $i < count($request->matiere_id); $i++) {
+                    DB::table('formation_matiere')->insert([
+                        'formation_id'=> $formation->id,
+                        'matiere_id'=> $request->matiere_id[$i]
+                    ]);
+                }
+        }
+        if($request->enseignant_id!=""){
+            DB::table('enseignant_formation')->where([['formation_id','=',$id]])->delete();
+                for ($i=0; $i < count($request->matiere_id); $i++) {
+                    DB::table('enseignant_formation')->insert([
+                        'enseignant_id'=> $request->enseignant_id[$i],
+                        'formation_id'=> $formation->id
+                    ]);
+                }
+    }
         return redirect('admin/formation')->with('flash_message', 'Formation updated!');
     }
 

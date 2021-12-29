@@ -9,11 +9,18 @@
     {!! $errors->first('resumé', '<p class="help-block">:message</p>') !!}
 </div>
 
-<div class="form-group {{ $errors->has('matiere_nom') ? 'has-error' : ''}}">
-    <label for="matiere_nom" class="control-label">{{ 'matiere_nom' }}</label>
-    <input class="form-control" name="matiere_nom" type="text" id="matiere_nom" value="{{ isset($chapitre->matiere_id) ? $chapitre->matiere->nom : ''}}" >
-    {!! $errors->first('matiere_nom', '<p class="help-block">:message</p>') !!}
+<div class="form-group">
+    <label>Code matiere</label>
+    <select name="matiere_id" class=""  style="width: 100%;">
+        <option value="" selected disabled>Choisissez une matiere</option>
+        @foreach ($matieres as $item)
+        <option value="{{$item->id}}" @if (isset($chapitre) && $item->id == $chapitre->matiere_id)
+            selected
+        @endif >{{$item->code_matiere}}</option>
+        @endforeach
+</select>
 </div>
+
 <div class="form-group">
     <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'Create' }}">
 </div>

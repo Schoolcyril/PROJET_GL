@@ -9,6 +9,7 @@ use App\Models\Examen;
 use App\Models\Formation;
 use App\Models\Matiere;
 use Illuminate\Http\Request;
+use PhpParser\Node\Stmt\Foreach_;
 
 class examenController extends Controller
 {
@@ -17,11 +18,20 @@ class examenController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function index()
+    public function index(Request $request)
     {
+        $keyword = $request->get('search');
+        $perPage = 25;
 
-        $examen=Examen::all();
-        return view('admin.examen.index', compact('examen'));
+        if (!empty($keyword)) {
+            $examens = Examen::where('date', 'LIKE', "%$keyword%")
+                ->latest()->paginate($perPage);
+        } else {
+            $examens = Examen::latest()->paginate($perPage);
+        }
+
+        return view('admin.examen.index', compact('examens'));
+
     }
 
     /**
@@ -44,14 +54,25 @@ class examenController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+			'date' => 'required',
+			'matiere_id' => 'required',
+            'formation_id'=>'required'
+		]);
       $form=Formation::findOrFail($request->formation_id);
-    
+      foreach ($form->matieres as $matiere) {
+          if($matiere->id==$request->matiere_id){
+          $requestData = $request->all();
+          Examen::create($requestData);
+          return redirect('admin/examen')->with('flash_message', 'Examen added!');
+      }
+    }
 
       return redirect('admin/examen/create')->with('flash_message', 'Examen failed!');
 
     }
 
-    /**
+    /**:
      * Display the specified resource.
      *
      * @param  int  $id
@@ -60,12 +81,9 @@ class examenController extends Controller
      */
     public function show($id)
     {
-        $exam=Examen::select('enseignants.nom as nom','enseignants.id as id','examens.date',
-        'examens.Heure_deb','examens.Heure_fin','examens.id')->
-        join('enseignants','enseignants.id','=','examens.enseignant_id')->where('examens.id',$id)->get();
+      $examen = Examen::findOrFail($id);
 
-
-        return view('admin.examen.show', compact('exam'));
+        return view('admin.examen.show', compact('examen'));
     }
 
     /**
@@ -78,9 +96,9 @@ class examenController extends Controller
     public function edit($id)
     {
         $examen = Examen::findOrFail($id);
-        $ens=Examen::select('enseignants.nom as nom','enseignants.id as id')->
-        join('enseignants','enseignants.id','=','examens.enseignant_id')->get();
-        return view('admin.examen.edit', compact('examen','ens'));
+        $matieres=Matiere::all();
+        $formations=Formation::all();
+        return view('admin.examen.edit', compact('examen','matieres','formations'));
     }
 
     /**
@@ -95,14 +113,20 @@ class examenController extends Controller
     {
         $this->validate($request, [
 			'date' => 'required',
-			'Heure_deb' => 'required',
-			'Heure_fin' => 'required',
-            'enseignant_id'=>'required'
-					]);
-        $requestData = $request->all();
-        $examen = Examen::findOrFail($id);
-        $examen->update($requestData);
-        return redirect('admin/examen')->with('flash_message', 'Examen updated!');
+			'matiere_id' => 'required',
+            'formation_id'=>'required'
+		]);
+            $form=Formation::findOrFail($request->formation_id);
+            foreach ($form->matieres as $matiere){
+                if($matiere->id==$request->matiere_id){
+                $requestData = $request->all();
+                $examen = Examen::findOrFail($id);
+                $examen->update($requestData);
+                return redirect('admin/examen')->with('flash_message', 'Examen added!');
+            }
+          }
+
+        return redirect('admin/examen/')->with('flash_message', 'Examen Refused!');
     }
 
     /**

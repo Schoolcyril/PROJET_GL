@@ -28,7 +28,16 @@
                                     <tr><th> Nom de la formation: </th><td> {{ $formation->nom_for }} </td></tr>
                                     <tr><th> Date de debut:</th><td> {{ $formation->date_debut }} </td></tr>
                                     <tr><th>Date de fin: </th><td> {{ $formation->date_fin }} </td></tr>
-                                    <tr><th> Identifiant de la categorie: </th><td> {{ $formation->category_id }} </td></tr><br/>
+                                    <tr><th> nom de la categorie: </th><td> {{ $formation->category->nom_cat }} </td></tr><br/>
+                                    <tr><th>N° </th><th>Nom Matiere</th><th> Code Matiere</th><th> Nom Enseignant</th></tr>
+                                    @foreach ($formation->matieres as $matiere)
+                                    <tr> <td>{{ $loop->iteration }}</td>
+                                        <td> {{ $matiere->nom }} </td>
+                                        <td> {{ $matiere->code_matiere }} </td>
+                                        <td> {{ $matiere->enseignant->nom }} </td>
+                                    </tr>
+                                    @endforeach
+
                                 </tbody>
                             </table>
                         </div>

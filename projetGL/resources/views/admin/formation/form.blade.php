@@ -21,8 +21,9 @@
 
 <div class="form-group">
     <label>categorie</label>
-    <select name="category_id" class=""  data-placeholder="Choisissez votre categorie" style="width: 100%;">
-        @foreach ($categorie as $item)
+    <select name="category_id" class=""  style="width: 100%;">
+        <option value="" selected disabled>Choisissez une categorie</option>
+        @foreach ($categories as $item)
         <option value="{{$item->id}}" @if (isset($formation) && $item->id ==$formation->category_id)
             selected
         @endif >{{$item->nom_cat}}</option>
@@ -32,11 +33,18 @@
 
 <div class="form-group">
         <label>Matieres</label>
-        <select name="matiere_id[]" class="select2" multiple="multiple" data-placeholder="Choisissez vos matieres" style="width: 100%;">
-            @foreach ($matiere as $item)
-            <option value="{{$item->id}}"@if (isset($formation) && $item->id ==$formation->matiere_id)
-                selected
-            @endif >{{$item->nom}}</option>
+        <select name="matiere_id[]" class="select2" multiple="multiple" data-placeholder="Choisissez les matieres de cette formation" style="width: 100%;">
+
+            @foreach ($matieres as $item)
+            <option value="{{$item->id}}"
+                @if (isset($formation))
+                @foreach ($formation->matieres as $matiere)
+                    @if ($item->id ==$matiere->id)
+                        selected
+                    @endif
+                @endforeach
+            @endif >
+            {{$item->nom}}</option>
             @endforeach
     </select>
 </div>

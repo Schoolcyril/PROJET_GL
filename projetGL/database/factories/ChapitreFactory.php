@@ -2,10 +2,10 @@
 
 namespace Database\Factories;
 
+use App\Models\Matiere;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 
-class CategoryFactory extends Factory
+class ChapitreFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -15,8 +15,10 @@ class CategoryFactory extends Factory
     public function definition()
     {
         return [
-            'nom_cat' => Str::random(5),
-            'description' => $this->faker->paragraph(3, true),
+            'titre'=>$this->faker->title(),
+            'resumé'=>$this->faker->paragraph(3,true),
+            'matiere_id'=>Matiere::all()->random()->id
+            
         ];
     }
 }
