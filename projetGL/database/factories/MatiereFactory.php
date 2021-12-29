@@ -4,6 +4,7 @@ namespace Database\Factories;
 use Illuminate\Support\Str;
 use App\Models\Matiere;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class matiereFactory extends Factory
 {
@@ -18,7 +19,7 @@ class matiereFactory extends Factory
         return [
             'nom'=> Str::random(10),
             'code_matiere'=> Str::random(10),
-            'nbre_heures'=>$this->faker->number
+            'nbre_heures'=>$this->faker->numberBetween($min=670000000,$max=679999999),
         ];
     }
 }
