@@ -1,6 +1,8 @@
 <?php
 
 namespace Database\Factories;
+
+use App\Models\Enseignant;
 use Illuminate\Support\Str;
 use App\Models\Matiere;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -17,8 +19,9 @@ class matiereFactory extends Factory
     {
         return [
             'nom'=> Str::random(10),
-            'code_matiere'=> Str::random(10),
-            'nbre_heures'=>$this->faker->numerify()
+            'code_matiere'=> Str::random(5),
+            'nbre_heures'=>$this->faker->randomDigitNotNull(),
+            'enseignant_id' => Enseignant::all()->random()->id
         ];
     }
 }

@@ -26,7 +26,15 @@
                                         <th>ID</th><td>{{ $enseignant->id }}</td>
                                     </tr>
                                     <tr><th> Nom </th><td> {{ $enseignant->nom }} </td></tr><tr><th> Numero Tel </th><td> {{ $enseignant->numero_tel }} </td></tr><tr><th> Email </th><td> {{ $enseignant->email }} </td></tr>
+                                    <tr><th>N° </th><th>Nom Matiere</th><th> Code Matiere</th></tr>
+                                    @foreach ($enseignants->matieres as $matiere)
+                                    <tr> <td>{{ $loop->iteration }}</td>
+                                        <td> {{ $matiere->nom }} </td>
+                                        <td> {{ $matiere->code_matiere }} </td>
+                                    </tr>
+                                    @endforeach
                                 </tbody>
+
                             </table>
                         </div>
 

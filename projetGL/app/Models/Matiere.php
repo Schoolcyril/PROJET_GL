@@ -4,6 +4,7 @@ namespace App\Models;
 use App\Models\Chapitre;
 use App\Models\Formation;
 use App\Models\Examen;
+use App\Models\Enseignant;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -29,7 +30,7 @@ class Matiere extends Model
      *
      * @var array
      */
-    protected $fillable = ['nom', 'code_matiere', 'nbre_heures'];
+    protected $fillable = ['nom', 'code_matiere', 'nbre_heures','enseignant_id'];
 
     public function chapitres()
     {
@@ -43,5 +44,9 @@ class Matiere extends Model
     public function examens()
     {
         return $this->hasMany(Examen::class);
+    }
+    public function enseignant()
+    {
+        return $this->belongsTo(Enseignant::class);
     }
 }

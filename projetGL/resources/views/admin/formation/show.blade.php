@@ -29,20 +29,15 @@
                                     <tr><th> Date de debut:</th><td> {{ $formation->date_debut }} </td></tr>
                                     <tr><th>Date de fin: </th><td> {{ $formation->date_fin }} </td></tr>
                                     <tr><th> nom de la categorie: </th><td> {{ $formation->category->nom_cat }} </td></tr><br/>
-                                    <tr><th>N° </th><th>Nom Matiere</th><th> Code_matiere</th></tr>
+                                    <tr><th>N° </th><th>Nom Matiere</th><th> Code Matiere</th><th> Nom Enseignant</th></tr>
                                     @foreach ($formation->matieres as $matiere)
                                     <tr> <td>{{ $loop->iteration }}</td>
                                         <td> {{ $matiere->nom }} </td>
                                         <td> {{ $matiere->code_matiere }} </td>
+                                        <td> {{ $matiere->enseignant->nom }} </td>
                                     </tr>
                                     @endforeach
-                                    <tr><th>N° </th><th>Nom enseignant</th></tr>
-                                    @foreach ($formation->enseignants as $enseignant)
-                                    <tr> <td>{{ $loop->iteration }}</td>
 
-                                    <td> {{ $enseignant->nom }} </td>
-                                    </tr>
-                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

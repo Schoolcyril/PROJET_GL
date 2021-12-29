@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Create New Category</div>
+                    <div class="card-header">Edit category#{{ $category>id }}</div>
                     <div class="card-body">
                         <a href="{{ url('/admin/category') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
                         <br />
@@ -19,10 +19,11 @@
                             </ul>
                         @endif
 
-                        <form method="POST" action="{{ url('/admin/category/ajout') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+                        <form method="POST" action="{{ url('/admin/category/update/' . $category->id) }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+                            {{ method_field('POST') }}
                             {{ csrf_field() }}
 
-                            @include ('admin.category.form', ['formMode' => 'create'])
+                            @include ('admin.category.form', ['formMode' => 'edit'])
 
                         </form>
 
@@ -31,7 +32,4 @@
             </div>
         </div>
     </div>
-@stop
-
-
-
+@endsection

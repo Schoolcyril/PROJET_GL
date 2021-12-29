@@ -50,22 +50,5 @@
 </div>
 
 <div class="form-group">
-    <label>Enseignants</label>
-    <select name="enseignant_id[]" class="select2" multiple="multiple" data-placeholder="Choisissez les enseignants de cette formations " style="width: 100%;">
-        @foreach ($enseignants as $item)
-        <option value="{{$item->id}}"
-            @if (isset($formation))
-            @foreach ($formation->enseignants as $enseignant)
-                @if ($item->id ==$enseignant->id)
-                    selected
-                @endif
-            @endforeach
-        @endif >
-        {{$item->nom}}</option>
-        @endforeach
-</select>
-</div>
-
-<div class="form-group">
     <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'Create' }}">
 </div>

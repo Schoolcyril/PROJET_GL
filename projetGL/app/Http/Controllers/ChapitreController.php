@@ -36,7 +36,8 @@ class ChapitreController extends Controller
      */
     public function create()
     {
-        return view('admin.Chapitres.create');
+        $matieres=Matiere::all();
+        return view('admin.Chapitres.create',compact('matieres'));
     }
 
     /**
@@ -51,17 +52,11 @@ class ChapitreController extends Controller
         $this->validate($request, [
 			'titre' => 'required',
 			'resumé' => 'required',
-            'matiere_nom'=>'required'
+            'matiere_id'=>'required'
 
 		]);
-
-        $matiere = Matiere::where('nom',$request->matiere_nom)->firstOrFail();
-
-        Chapitre::create([
-            'titre' =>$request->titre,
-			'resumé' => $request->resumé,
-            'matiere_id'=>$matiere->id
-        ]);
+           $requestData=$request->all();
+           Chapitre::create($requestData);
 
         return redirect('admin/chapitres')->with('flash_message', 'Chapitre ajouté');
     }
@@ -76,8 +71,8 @@ class ChapitreController extends Controller
     public function show($id)
     {
         $chapitre = Chapitre::findOrFail($id);
-
-        return view('admin.chapitres.show', compact('chapitre'));
+        $matieres=Matiere::all();
+        return view('admin.chapitres.show', compact('chapitre','matieres'));
     }
 
      /**
@@ -90,7 +85,8 @@ class ChapitreController extends Controller
     public function edit($id)
     {
         $chapitre = Chapitre::findOrFail($id);
-        return view('admin.chapitres.edit', compact('chapitre'));
+        $matieres=Matiere::all();
+        return view('admin.chapitres.edit', compact('chapitre','matieres'));
     }
 
 
@@ -104,19 +100,15 @@ class ChapitreController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $this->validate($request, [
 			'titre' => 'required',
 			'resumé' => 'required',
-            'matiere_nom'=>'required'
+            'matiere_id'=>'required'
 
-					]);
-        $matiere = Matiere::where('nom',$request->matiere_nom)->firstOrFail();
-        $requestData = [
-            'titre' =>$request->titre,
-			'resumé' => $request->resumé,
-            'matiere_id'=>$matiere->id
-        ];
-        $chapitre = chapitre::findOrFail($id);
+		]);
+        $requestData=$request->all();
+        $chapitre = Chapitre::findOrFail($id);
         $chapitre->update($requestData);
 
         return redirect('admin/chapitres')->with('flash_message', 'chapitre updated!');

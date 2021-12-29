@@ -2,6 +2,7 @@
 
 namespace App\Models;
 use App\Models\Formation;
+use App\Models\Matiere;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -33,4 +34,9 @@ class Enseignant extends Model
     {
         return $this->belongsToMany(Formation::class);
     }
+    public function matieres()
+    {
+        return $this->hasMany(Matiere::class);
+    }
+
 }

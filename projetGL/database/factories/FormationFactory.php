@@ -17,6 +17,7 @@ class FormationFactory extends Factory
     {
         return [
             'nom_for' => Str::random(10),
+            'code_for' => Str::random(5),
             'date_debut' => $this->faker->date(),
             'date_fin' => $this->faker->date(),
             'category_id' => Category::all()->random()->id

@@ -15,10 +15,10 @@ class EnseignantFactory extends Factory
     public function definition()
     {
         return [
-            'nom'=>Str::random(6),
-            'numero_tel'=>Str::random(9),
+            'nom'=>$this->faker->name(),
+            'numero_tel'=>$this->faker->phoneNumber(),
             'email'=>$this->faker->email(),
-            'adresse'=>Str::random(5),
+            'adresse'=>$this->faker->address(),
             'domaine'=>$this->faker->randomElement(['mathematique','informatique','français','anglais'])
         ];
     }
